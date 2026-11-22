@@ -16,6 +16,7 @@ import org.springframework.data.repository.query.Param;
 public interface OrderRepository extends JpaRepository<Order, Long> {
     Optional<Order> findByOrderNumber(String orderNumber);
     Page<Order> findAllByOrderByCreatedAtDesc(Pageable pageable);
+    boolean existsByCashierId(Long cashierId);
 
     @Query("SELECT o FROM Order o WHERE " +
            "LOWER(o.orderNumber) LIKE :searchPattern " +

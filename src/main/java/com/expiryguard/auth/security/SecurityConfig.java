@@ -68,7 +68,7 @@ public class SecurityConfig {
                                 "/*.json",
                                 "/*.js",
                                 "/*.css",
-                                "/api/v1/auth/**",
+                                "/api/v1/auth/login",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
                                 "/api-docs/**"

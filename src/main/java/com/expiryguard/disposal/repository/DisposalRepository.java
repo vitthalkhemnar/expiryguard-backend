@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @Repository
 public interface DisposalRepository extends JpaRepository<DisposalLog, Long> {
     Page<DisposalLog> findAllByOrderByDisposedAtDesc(Pageable pageable);
+    boolean existsByApprovedById(Long approvedById);
 
     @Query("SELECT COALESCE(SUM(d.financialLossAmount), 0) FROM DisposalLog d")
     BigDecimal sumTotalFinancialLoss();
