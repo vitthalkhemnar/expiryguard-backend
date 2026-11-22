@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: expiry-guard-backend
+
+  datasource:
+    url: ${DB_URL:jdb}
+    driverClassName: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    open-in-view: false
+    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: public
+
+  sql:
+    init:
+      mode: always
+
+  flyway:
+    enabled: false
+
+# Application Specific Configurations
+expiryguard:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: 86400000 # 24 hours
+  markdown:
+    cron: "0 0 2 * * ?" # 2:00 AM daily
+    enabled: true
+
+# OpenAPI / Swagger config
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
